@@ -1,21 +1,20 @@
 class Patient
-  attr_accessor :name, :appointments
-  def initialize(name)
+  attr_accessor :appointments,:name
+
+  def initialize(name=nil)
+    # @appointment=appointment
     @name=name
-    @appointments=[]
-  end #initialize
+    @appointments = []
+  end
 
   def add_appointment(appointment)
     @appointments << appointment
-    #   This method should also tell the appointment that it belongs to this patient.
-    appointment.patient=self
+    appointment.patient = self
+  # app
   end
 
   def doctors
-    #   that iterates over that patient's appointments and collects the doctor that belongs to each appointment.
-    @appointments.collect do |appointment|
-      appointment.doctor
-    end #collect
+    d = @appointments.collect {|a| a.doctor}
+    d.uniq
   end
-
-end #class
+end

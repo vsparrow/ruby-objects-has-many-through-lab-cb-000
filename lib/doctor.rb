@@ -4,17 +4,15 @@ class Doctor
   def initialize(name)
     @name=name
     @appointments=[]
-  end #initialize
+  end
 
-  def add_appointment(appointment) # instance of the Appointment class
+  def add_appointment(appointment)
     @appointments << appointment
-    # The method should also tell that appointment that it belongs to that doctor.
-  end #add_appointment
+    appointment.doctor = self
+  end
 
   def patients
-    #   iterates over that doctor's appointments and collects the patient that belongs to each appointment.
-    @appointments.collect do |appointment|
-      appointment.patient
-    end #collects
-  end #patients
-end #class
+    a = @appointments.collect {|a| a.patient}
+    a.uniq
+  end
+end
